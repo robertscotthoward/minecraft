@@ -8,7 +8,7 @@ To allow kids to write python code in small files that hide the details to creat
 
 # Requirements
 
-* Python 3
+* Python 3.11
 * Pyglet library. `pip install pyglet==1.5.27` if not already loaded.
 
 ## Usage
