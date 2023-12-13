@@ -1,3 +1,6 @@
+#
+# pip install pyglet==1.5.27
+#
 import datetime
 import math
 import os
@@ -6,11 +9,17 @@ import time
 import sys
 
 from collections import deque
+
+import pyglet
+
 from pyglet import image
 from pyglet.gl import *
 from pyglet.graphics import TextureGroup
 from pyglet.window import key, mouse
+from OpenGL.GL import *
+from OpenGL.GLU import *
 from optparse import OptionParser
+
 
 if sys.version_info[0] < 3:
     range = xrange
@@ -467,7 +476,7 @@ class Window(pyglet.window.Window):
         #
         # The vertical plane rotation ranges from -90 (looking straight down) to
         # 90 (looking straight up). The horizontal rotation range is unbounded.
-        self.rotation = (0, 0)
+        self.rotation = (90, 0)
 
         # Which sector the player is currently in.
         self.sector = None
@@ -735,10 +744,9 @@ class Window(pyglet.window.Window):
             return previous
         if os.path.exists(FileName):
             try:
-                r = exec(open(FileName).read(), {'W': self, 'Position': Position, 'Touch': Touch, 'SetBlock': self.model.add_block, 'BRICK': self.block, 'blocks': blocks, 
+                r = exec(open(FileName).read(), {'W': self, 'Position': Position, 'Touch': Touch, 'SetBlock': self.model.add_block, 'BRICK': self.block, 'blocks': blocks,
                                                 'SAND': SAND, 'GRASS': GRASS, 'BRICK': BRICK, 'STONE': STONE})
                 print(FileName + " loaded successfully")
-                print(r)
             except RuntimeError as err:
               print("Error in file:", FileName, "at line number", err.lineno)
             except SyntaxError as err:
@@ -749,9 +757,10 @@ class Window(pyglet.window.Window):
 
 
     def on_key_press(self, symbol, modifiers):
-        # [KEYS]
-        """ Called when the player presses a key. See pyglet docs for key
-        mappings.
+        # [KEYS] input key keyboard
+        """
+
+        Called when the player presses a key. See pyglet docs for key mappings.
 
         Parameters
         ----------
@@ -789,8 +798,6 @@ class Window(pyglet.window.Window):
             MakeWorld(self.model, self)
         elif symbol == key.TAB:
             self.flying = not self.flying
-        elif symbol == key.Q:
-            exit()
         elif symbol in self.num_keys:
             index = (symbol - self.num_keys[0]) % len(self.inventory)
             self.block = self.inventory[index]
@@ -1007,10 +1014,16 @@ def MakeWorld1(m):
             for z in range(-w, w + 1, s):
                 m.add_block((x, y-1, z), GRASS, immediate=False)
 
+window = Window(width=800, height=600, caption='Pyglet', resizable=True)
+
+@window.event
+def on_key_press(symbol, modifier):
+    if symbol == pyglet.window.key.Q:
+        print("Exiting...")
+        window.close()
 
 def main():
     global FileName
-    window = Window(width=800, height=600, caption='Pyglet', resizable=True)
     # Hide the mouse cursor and prevent the mouse from leaving the window.
     window.set_exclusive_mouse(True)
     setup()
@@ -1019,6 +1032,8 @@ def main():
     options, args = parser.parse_args()
     if len(args) > 0:
         FileName = args[0]
+        if not FileName.endswith('.py'):
+            FileName += '.py'
         if not os.path.exists(FileName):
           print("File Not Found:", FileName)
         print("File:", FileName)

@@ -1,6 +1,6 @@
 # Minecraft
 
-A fork and modification of https://github.com/fogleman/Minecraft 
+A fork and modification of https://github.com/fogleman/Minecraft
 
 ## Goal
 
@@ -9,13 +9,14 @@ To allow kids to write python code in small files that hide the details to creat
 # Requirements
 
 * Python 3
-* Pyglet library. `pip install pyglet` if not already loaded.
+* Pyglet library. `pip install pyglet==1.5.27` if not already loaded.
 
 ## Usage
 
 Run `python Minecraft.py MyCode.py` where `MyCode` is the name of a python file that contains the code (written by the student) that `Minecraft.py` will load in and render.
 
 Consider using the `Run.bat` file that prompts for the file name; e.g. `MyCode`.
+Or just type `run MyCode` at the command line.
 
 For rapid development, you can open `MyCode.py` (for example) in your editor, make changes, switch to the Minecraft window, then hit `C` and `L` to reload and render your changes.
 
