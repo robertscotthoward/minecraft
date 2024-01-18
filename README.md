@@ -23,7 +23,7 @@ Run `python Minecraft.py MyCode.py` where `MyCode` is the name of a python file 
 Consider using the `Run.bat` file that prompts for the file name; e.g. `MyCode`.
 Or just type `run MyCode` at the command line.
 
-For rapid development, you can open `MyCode.py` (for example) in your editor, make changes, switch to the Minecraft window, then hit `C` and `L` to reload and render your changes.
+For rapid development, you can open `MyCode.py` (for example) in your editor, make changes, switch to the Minecraft window, then hit `C` and `L` to reload and render your changes; or `R` to do both.
 
 ## Hotkeys
 
