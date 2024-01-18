@@ -10,6 +10,11 @@ To allow kids to write python code in small files that hide the details to creat
 
 * Python 3.11
 * Pyglet library. `pip install pyglet==1.5.27` if not already loaded.
+* OpenGL library. `pip install pyopengl` if not already loaded.
+
+or
+
+`pip install pyopengl pyglet==1.5.27`
 
 ## Usage
 
@@ -32,6 +37,7 @@ For rapid development, you can open `MyCode.py` (for example) in your editor, ma
 * `ESCAPE` to exit window.
 * `C` clear the board and reset.
 * `L` to reload the file. Expect a pause while rendering.
-* `H` to teleport back home; i.e. the default starting position.
+* `H` to teleport back home; i.e. the default starting position and direction.
 * `M` generate hills. Expect a pause while rendering.
+* `R` same as these three key: `H` `C` `L`
 * `Q` quit.

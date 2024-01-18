@@ -786,9 +786,16 @@ class Window(pyglet.window.Window):
             self.set_exclusive_mouse(False)
         elif symbol == key.L:
             self.LoadFile()
+        elif symbol == key.R:
+            # Reset
+            self.position = 0,0,0
+            self.rotation = (90, 0)
+            self.model.clear()
+            self.LoadFile()
         elif symbol == key.H:
             # RSH: Teleport back to home
             self.position = 0,0,0
+            self.rotation = (90, 0)
         elif symbol == key.M:
             # RSH: Make hills
             MakeHills(self.model, self)

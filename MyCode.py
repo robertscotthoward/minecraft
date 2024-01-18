@@ -7,4 +7,5 @@
 
 X, Y, Z = Position()
 
-SetBlock((X+10, Y-1, Z-2), SAND)
+for y in range(5):
+  SetBlock((10, y-1, 0), SAND)
